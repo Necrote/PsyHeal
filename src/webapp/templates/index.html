@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
+</head>
+<body>
+<div id="content">
+    <header>
+      <img src="{{url_for('static', filename='PsyHeal.png')}}" alt="Banner"/>
+    </header>
+    <nav>
+      <ul>
+        {% if username %}
+        <li class="button one">Hello! <strong>{{ username }}</strong></li>
+        {% endif %}
+        <li class="button one"><span><a href="{{ url_for('login') }}">Login</a></span></li>
+        <li class="button one"><span><a href="{{ url_for('help') }}">Help</a></span></li>
+        {% if username %}
+          <li class="button one"><span><a href="{{ url_for('logout') }}">Logout</a></span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <article>
+    {% with messages = get_flashed_messages() %}
+         {% if messages %}
+              {% for message in messages %}
+                  <div class="alert success">
+                    <strong>Successfully 
+                    {{ message }}
+                    </strong>
+                  </div>
+              {% endfor %}
+         {% endif %}
+      {% endwith %}
+      <h1>About</h1>
+      <p>In medical practice, monitoring mental health of a patient is as essential as its physical counterpart. This can be achieved through various established psychological assessment techniques. But they can be tedious to perform and evaluate accurately if done manually.</p>
+      <p>PsyHeal automates this using various personality insights API provided by IBM Watson under cognitive services category. Linguistic analytics are leveraged to achieve this by inferring individuals’ intrinsic personality characteristics, including big five, needs, and values. Patients are monitored through a multitude of digital communication mediums. Doctors can interface with this tool via a web-app framework and visualize the monitored results.</p>
+    </article>
+  </div>
+  <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>
+</body>
+</html>

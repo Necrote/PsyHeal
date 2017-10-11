@@ -1,0 +1,117 @@
+  #content{
+    width: 100%;
+    height: 100%;
+    background-color: #E3F2FD;
+    flex: 1;
+  }
+  #footer{
+    padding: 1em;
+    color: white;
+    background-color: #0E344A;
+    align-items: stretch;
+    clear: left;
+    text-align: center;
+  }
+  *{
+    font-family:Arial;
+  }
+  html{
+    height: 100%;
+  }
+  body{
+    display: flex;
+    flex-direction: column;
+    min-height: 97%;
+  }
+  header{
+    padding: 1em;
+    color: white;
+    background-color: #0E344A;
+    clear: left;
+    text-align: center;
+  }
+  nav {
+    float: left;
+    max-height: : 30px;
+    margin: 0;
+    padding: 1em;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  nav ul a{
+    text-decoration: none;
+  }
+  article {
+    margin-left: 200px;
+    padding: 1em;
+    overflow: hidden;
+    align-items: stretch;
+  }
+  a{
+    color: white;
+  }
+  .button{
+    border-radius: 2px;
+    background-color: #0E344A;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+  }
+  .button.one{
+    padding: 10px;
+    font-size: 20px;
+  }
+  .button.second{
+    font-size: 16px;
+  }
+  .button span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  .button span:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.5s;
+  }
+  .button:hover span{
+    padding-right: 15px;
+  }
+  .button:hover span:after{
+    opacity: 1;
+    right: 0;
+  }
+  .alert{
+    border-radius: 2px;
+    padding: 20px;
+    background-color: #A6372F;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+  }
+  .alert.success{
+    background-color: #3A863D;
+  }
+  .alert.info{
+    background-color: #0E344A;
+  }
+  .alert.warning{
+    background-color: #D68000;
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+    background-color: #0E344A;
+    color: white;
+  }

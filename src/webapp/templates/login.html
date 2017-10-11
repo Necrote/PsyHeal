@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
+</head>
+<body>
+	<div id="content">
+		<header>
+			<img src="{{url_for('static', filename='PsyHeal.png')}}" alt="Banner"/>
+		</header>
+
+		<nav>
+			<ul>
+				{% if username %}
+        <li class="button one">Hello! <strong>{{ username }}</strong></li>
+        {% endif %}
+        <li class="button one"><span><a href="{{ url_for('index') }}">Home</a></span></li>
+        <li class="button one"><span><a href="{{ url_for('help') }}">Help</a></span></li>
+				{% if username %}
+          <li class="button one"><span><a href="{{ url_for('logout') }}">Logout</a></span></li>
+        {% endif %}
+			</ul>
+		</nav>
+
+		<article>
+			<form action="" method="POST">
+				<table>
+					<tr>
+						<td>Username</td>
+						<td><input type="text" name="username" value = "{{request.form.username }}"></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td><input type="password" name="password"></td>
+					</tr>
+					<tr>
+						<td>Account Type</td>
+						<td>
+							<select class="button second" name="accType">
+								{% for type in typeList %}
+								{% if type == accType %}
+								<option selected value="{{ type }}">{{ type }}</option> 
+								{% else %} 
+								<option value="{{ type }}">{{ type }}</option> 
+								{% endif %}
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2">
+							<input class="button second" type="submit" name="submit" value="Login">
+						</td>
+					</tr>
+				</table>
+			</form>
+			{% if error %}
+			<p>
+				<div class="alert"><strong>Error! </strong>{{ error }}</div>
+			</p>
+			{% endif %}
+		</article>
+	</div>
+	<footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek Patel</a></footer>
+</body>
+</html>

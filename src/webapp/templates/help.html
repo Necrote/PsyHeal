@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Help</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
+</head>
+<body>
+  <div id="content">
+    <header>
+      <img src="{{url_for('static', filename='PsyHeal.png')}}" alt="Banner"/>
+    </header>
+
+    <nav>
+      <ul>
+        {% if username %}
+        <li class="button one">Hello! <strong>{{ username }}</strong></li>
+        {% endif %}
+        <li class="button one"><span><a href="{{ url_for('index') }}">Home</a></span></li>
+        <li class="button one"><span><a href="{{ url_for('login') }}">Login</a></span></li>
+        {% if username %}
+          <li class="button one"><span><a href="{{ url_for('logout') }}">Logout</a></span></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <article>
+      <strong>***TO-DO***</strong>
+    </article>
+  </div>
+  <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek Patel</a></footer>
+</body>
+</html>

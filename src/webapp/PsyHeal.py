@@ -64,7 +64,6 @@ def newuser():
     error = None
     msg = None
     if accType != 'admin':
-        print accType
         error = 'You are not authorized to add more users! Contact admin.'
     return render_template('newuser.html', username = username, accType = accType, typeList=typeList, error = error, msg = msg)
 
@@ -75,7 +74,6 @@ def adduser():
     msg = None
 
     if accType != 'admin':
-        print accType
         error = 'You are not authorized to add more users! Contact admin.'
     elif request.method == 'POST':
         try:
@@ -105,7 +103,6 @@ def removeuser():
     error = None
     msg = None
     if accType != 'admin':
-        print accType
         error = 'You are not authorized to add more users! Contact admin.'
     return render_template('removeuser.html', username = username, accType = accType, error = error, msg = msg)
 
@@ -116,7 +113,6 @@ def deleteuser():
     msg = None
 
     if accType != 'admin':
-        print accType
         error = 'You are not authorized to add more users! Contact admin.'
     elif request.method == 'POST':
         try:
@@ -143,7 +139,6 @@ def showaccdata():
     query = None
 
     if accType != 'admin':
-        print accType
         error = 'You are not authorized to view this page!'
     else:
         try:
@@ -157,6 +152,35 @@ def showaccdata():
             conn.close()
    
     return render_template("showaccdata.html", username = username, accType = accType, query = query, error = error)
+
+@app.route('/newentry')
+def newentry():
+    username, password, accType = getSessionData()
+    error = None
+    msg = None
+    if accType != 'patient':
+        error = 'You are not authorized for adding text entries.'
+    return render_template('addentry.html', username = username, accType = accType, error = error, msg = msg)
+
+@app.route('/addentry', methods = ['GET', 'POST'])
+def addentry():
+    username, password, accType = getSessionData()
+    error = None
+    msg = None
+
+    if accType != 'patient':
+        error = 'You are not authorized for adding text entries.'
+    elif request.method == 'POST':
+        try:
+            entry = request.form['entry']
+            print "here1"
+            with open(dbPath+username+"_output.txt", "w") as entryFile:
+                entryFile.write(entry)
+            print "here2"
+            msg = "entry added."
+        except:
+            error = "internal write error."
+    return render_template('addentry.html', username = username, accType = accType, error = error, msg = msg)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

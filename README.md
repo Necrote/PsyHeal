@@ -10,7 +10,7 @@ PsyHeal is a Flask-based webapp that automates psychological assessments and mon
 * sqlite 3.8.2
 
 ## How to run
-* Execute dbSetup.py
+* Execute dbSetup.py (only once on first run)
 * Execute run.sh
 * Access WebServer URL for further usage instructions (default: http://localhost:5000/)
 

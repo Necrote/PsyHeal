@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Home</title>
+  <title>Create New User</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
 </head>
 <body>
@@ -17,10 +18,10 @@
         {% else %}
         <li><a href="{{ url_for('login') }}"><div class="button one"><span>Login</span><div></a></li>
         {% endif %}
+        <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
         <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
         {% if accType == 'admin' %}
         <li><a href="{{ url_for('newuser') }}"><div class="button one"><span>Add new user</span><div></a></li>
-        <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
         <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
         {% endif %}
         {% if username %}
@@ -28,21 +29,31 @@
         {% endif %}
       </ul>
     </nav>
+
     <article>
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      {% for message in messages %}
-      <div class="alert success">
-        <strong>Successfully 
-          {{ message }}
-        </strong>
-      </div>
-      {% endfor %}
+      <form action="{{ url_for('deleteuser') }}" method="POST">
+        <table>
+          <tr>
+          <th>Username</th>
+            <th><input type="text" name="username"></th>
+          </tr>
+          <tr>
+          <th align="center" colspan="2">
+              <input class="button second" type="submit" name="submit" value="Remove User">
+            </th>
+          </tr>
+        </table>
+      </form>
+      {% if error %}
+      <p>
+        <div class="alert"><strong>Error! </strong>{{ error }}</div>
+      </p>
       {% endif %}
-      {% endwith %}
-      <h1>About</h1>
-      <p>In medical practice, monitoring mental health of a patient is as essential as its physical counterpart. This can be achieved through various established psychological assessment techniques. But they can be tedious to perform and evaluate accurately if done manually.</p>
-      <p>PsyHeal automates this using various personality insights API provided by IBM Watson under cognitive services category. Linguistic analytics are leveraged to achieve this by inferring individuals’ intrinsic personality characteristics, including big five, needs, and values. Patients are monitored through a multitude of digital communication mediums. Doctors can interface with this tool via a web-app framework and visualize the monitored results.</p>
+      {% if msg %}
+      <p>
+        <div class="alert success"><strong>Success! </strong>{{ msg }}</div>
+      </p>
+      {% endif %}
     </article>
   </div>
   <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>

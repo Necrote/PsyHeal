@@ -13,13 +13,18 @@
 		<nav>
 			<ul>
 				{% if username %}
-        <li class="button one">Hello! <strong>{{ username }}</strong></li>
-        {% endif %}
-        <li class="button one"><span><a href="{{ url_for('index') }}">Home</a></span></li>
-        <li class="button one"><span><a href="{{ url_for('help') }}">Help</a></span></li>
+				<li class="button one">Hello! <strong>{{ username }}</strong></li>
+				{% endif %}
+				<li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
+				<li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
+				{% if accType == 'admin' %}
+				<li><a href="{{ url_for('newuser') }}"><div class="button one"><span>Add new user</span><div></a></li>
+        <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
+				<li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
+				{% endif %}
 				{% if username %}
-          <li class="button one"><span><a href="{{ url_for('logout') }}">Logout</a></span></li>
-        {% endif %}
+				<li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>
+				{% endif %}
 			</ul>
 		</nav>
 
@@ -27,31 +32,17 @@
 			<form action="" method="POST">
 				<table>
 					<tr>
-						<td>Username</td>
-						<td><input type="text" name="username" value = "{{request.form.username }}"></td>
+						<th>Username</th>
+						<th><input type="text" name="username"></th>
 					</tr>
 					<tr>
-						<td>Password</td>
-						<td><input type="password" name="password"></td>
+						<th>Password</th>
+						<th><input type="password" name="password"></th>
 					</tr>
 					<tr>
-						<td>Account Type</td>
-						<td>
-							<select class="button second" name="accType">
-								{% for type in typeList %}
-								{% if type == accType %}
-								<option selected value="{{ type }}">{{ type }}</option> 
-								{% else %} 
-								<option value="{{ type }}">{{ type }}</option> 
-								{% endif %}
-								{% endfor %}
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2">
+						<th align="center" colspan="2">
 							<input class="button second" type="submit" name="submit" value="Login">
-						</td>
+						</th>
 					</tr>
 				</table>
 			</form>
@@ -62,6 +53,6 @@
 			{% endif %}
 		</article>
 	</div>
-	<footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek Patel</a></footer>
+	<footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>
 </body>
 </html>

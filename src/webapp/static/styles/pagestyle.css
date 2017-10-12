@@ -109,9 +109,15 @@
   .alert.warning{
     background-color: #D68000;
   }
-  th, td {
+  th{
     padding: 10px;
     text-align: center;
     background-color: #0E344A;
     color: white;
+  }
+  td{
+    padding: 10px;
+    text-align: center;
+    background-color: #A2DDFF;
+    color: black;
   }

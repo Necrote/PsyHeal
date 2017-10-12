@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Help</title>
+  <title>Account Details</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
 </head>
 <body>
@@ -18,10 +18,10 @@
         <li><a href="{{ url_for('login') }}"><div class="button one"><span>Login</span><div></a></li>
         {% endif %}
         <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
+        <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
         {% if accType == 'admin' %}
         <li><a href="{{ url_for('newuser') }}"><div class="button one"><span>Add new user</span><div></a></li>
         <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
-        <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
         {% endif %}
         {% if username %}
         <li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>
@@ -30,9 +30,29 @@
     </nav>
 
     <article>
-      <strong>***TO-DO***</strong>
-    </article>
-  </div>
-  <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>
+      {% if query %}
+      <table>
+        <thead>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Account Type</th>
+        </thead>
+        {% for row in query %}
+        <tr>
+         <td>{{ row[0] }}</td>
+         <td>{{ row[1] }}</td>
+         <td>{{ row[2] }}</td>
+       </tr>
+       {% endfor %}
+     </table>
+     {% endif %}
+   {% if error %}
+   <p>
+    <div class="alert"><strong>Error! </strong>{{ error }}</div>
+  </p>
+  {% endif %}
+</article>
+</div>
+<footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>
 </body>
 </html>

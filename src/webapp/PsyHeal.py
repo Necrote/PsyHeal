@@ -173,10 +173,8 @@ def addentry():
     elif request.method == 'POST':
         try:
             entry = request.form['entry']
-            print "here1"
             with open(dbPath+username+"_output.txt", "w") as entryFile:
                 entryFile.write(entry)
-            print "here2"
             msg = "entry added."
         except:
             error = "internal write error."

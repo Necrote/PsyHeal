@@ -15,6 +15,11 @@ def selectAttributes(factor , attributes):
 	temp_arr = []
 	return factor
 
+def ifExsists(con,newId):
+	if(con.find({'_id':newId}).count()>0):
+		return True
+	else:
+		return False
 
 with open("en_v3.json") as json_file:
 	json_data = json.load(json_file)
@@ -38,22 +43,12 @@ uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.m
 
 pName = "NameB"
 date = datetime.datetime.now()
-recordId = pName+"2"
 
 client = pymongo.MongoClient(uri)
 db = client.get_default_database()
 PDetails = db['patient_details']
+recordId = pName+"1"
 
-
-SEED_DATA = [
-	
-		'Record' : [
-			{'_id':recordId,
-			 'Date':date,
-			 'Analysis':persondata}
-		]
-	
-]
 
 #Selecting for Openness
 persondata[0] = selectAttributes(persondata[0],OpAttri)
@@ -71,7 +66,36 @@ persondata[3] = selectAttributes(persondata[3],AgreeAttri)
 persondata[4] = selectAttributes(persondata[4],EmoAttri)
 
 
-PDetails.update({ "_id":pName},SEED_DATA,{ 'upsert': True })
+if (ifExsists(PDetails,pName) ):
+	SEED_DATA = [
+	{'Rid':recordId,
+			 'Date':date,
+			 'Analysis':persondata}
+	]
+	PDetails.update({'_id': pName},{'$addToSet':{'Record':SEED_DATA}})
+	print("Record Updated")
+else:
+	SEED_DATA = [
+	 {
+		'_id' : pName,
+		'Record' : [
+			{'Rid':recordId,
+			 'Date':date,
+			 'Analysis':persondata}
+		]
+	 }
+	]
+	print("Record Inserted")
+	PDetails.insert_many(SEED_DATA)
+
+
+# if (ifExsists(PDetails,pName) ):
+# 	PDetails.update({'_id': pName},{'$addToSet':{'Record':RECORD_DATA}})
+# 	print("Record Updated")
+# else:
+# 	print("Record Inserted")
+# 	PDetails.insert_one(SEED_DATA)
+
 
 client.close()
 

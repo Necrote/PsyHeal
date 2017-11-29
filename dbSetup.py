@@ -24,10 +24,10 @@ except:
 finally:
     conn.close()
     if error:
-        print error
+        print (error)
     else:
-        print '''****************************************************
+        print ('''****************************************************
         Setup done!\n****************************************************
         Inital admin credentials-
         username: ''' + usr + '''
-        password: ''' + pwd
+        password: ''' + pwd)

@@ -4,6 +4,8 @@ import sys
 import pymongo
 import urllib
 import datetime
+import time
+from bson.json_util import dumps
 
 def ifExsists(con,newId):
 	if(con.find({'_id':newId}).count()>0):
@@ -60,6 +62,32 @@ def createNotification(pId,doctorIds):
 
 # Read Notifiacation
 
-uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
-client = pymongo.MongoClient(uri)
-db = client.get_default_database()
+def getNotifications(doctorId,value):
+	uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
+
+	client = pymongo.MongoClient(uri)
+	db = client.get_default_database()
+
+
+	NotiDb = db['notifications']
+
+
+	if value != None:
+		cursor = NotiDb.find({"$and":[{"Notifications.Status": value},{"_id":doctorId}]},{"Notifications.$.Status":1})
+	else :
+		cursor = NotiDb.find({"_id" : doctorId})
+
+	result = dumps(cursor,cls=DateTimeEncoder)
+
+	info = json.loads(result) 
+
+	return info
+
+def getIsoDate(timevalue):
+	readable_date = time.strftime("%Y-%m-%d", time.localtime(int(timevalue / 1000)))
+	return readable_date
+
+
+# uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
+# client = pymongo.MongoClient(uri)
+# db = client.get_default_database()

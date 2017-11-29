@@ -117,30 +117,11 @@ def UploadFile(patientName , JsonFile ):
 
 		return False
 
-# file = "en_v3.json"
-# result=UploadFile("NameA",file)
-
-def getNotifications(doctorId,value):
-	uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
-
-	client = pymongo.MongoClient(uri)
-	db = client.get_default_database()
-
-
-	NotiDb = db['notifications']
-
-
-	if value != None:
-		cursor = NotiDb.find({"$and":[{"Notifications.Status": value},{"_id":doctorId}]},{"Notifications.$.Status":1})
-	else :
-		cursor = NotiDb.find({"_id" : doctorId})
-
-	result = dumps(cursor,cls=DateTimeEncoder)
-
-	info = json.loads(result) 
-
-	return info
-
 def getIsoDate(timevalue):
 	readable_date = time.strftime("%Y-%m-%d", time.localtime(int(timevalue / 1000)))
 	return readable_date
+
+
+
+# file = "en_v3.json"
+# result=UploadFile("NameA",file)

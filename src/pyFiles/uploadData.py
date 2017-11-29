@@ -48,7 +48,7 @@ def UploadFile(patientName , JsonFile ):
 
 		uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
 
-		date = datetime.datetime.now()
+		date = datetime.datetime(2017,10,7)
 
 		client = pymongo.MongoClient(uri)
 		db = client.get_default_database()
@@ -81,8 +81,8 @@ def UploadFile(patientName , JsonFile ):
 			count+=1
 			recordID = patientName+ str(count)
 
-			SEED_DATA = 
-			{'Rid':recordID,
+			SEED_DATA = {
+				'Rid':recordID,
 				 'Date':date,
 			 	'Analysis':persondata}
 			
@@ -123,5 +123,5 @@ def getIsoDate(timevalue):
 
 
 
-# file = "en_v3.json"
-# result=UploadFile("NameA",file)
+file = "en_v3.json"
+result=UploadFile("NameA",file)

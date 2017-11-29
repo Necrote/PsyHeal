@@ -29,8 +29,8 @@ def createNotification(pId,doctorIds):
 		for doctorId in doctorIds:
 
 			if(ifExsists(NotiDb,doctorId)):
-				SEED_DATA = 
-					{
+				SEED_DATA = {
+
 						'PatientId' : pId,
 	 					'Date' : date,
 	 					'Status': status
@@ -73,12 +73,21 @@ def getNotifications(doctorId,value):
 
 
 	if value != None:
-		cursor = NotiDb.find({"$and":[{"Notifications.Status": value},{"_id":doctorId}]},{"Notifications.$.Status":1})
+		cursor = NotiDb.find({"$and":[{"Notifications.Status": value},{"_id":doctorId}]})
+
+		for doc in cursor:
+			array = doc['Notifications']
+			finalarr = []
+			for i in range(len(array)):
+				if(array[i]["Status"] == False):
+					finalarr.append(array[i])
+		doc['Notifications'] = finalarr
+		result = dumps(doc)
 	else :
 		cursor = NotiDb.find({"_id" : doctorId})
-
-	result = dumps(cursor,cls=DateTimeEncoder)
-
+		result = dumps(cursor)
+	
+	
 	info = json.loads(result) 
 
 	return info
@@ -88,6 +97,7 @@ def getIsoDate(timevalue):
 	return readable_date
 
 
-# uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
-# client = pymongo.MongoClient(uri)
-# db = client.get_default_database()
+# doctors = []
+# doctors.append("D1")
+info=getNotifications("D1",True)
+pprint(info)

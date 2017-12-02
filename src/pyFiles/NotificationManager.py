@@ -99,5 +99,5 @@ def getIsoDate(timevalue):
 
 # doctors = []
 # doctors.append("D1")
-info=getNotifications("D1",True)
-pprint(info)
+# info=getNotifications("D1",True)
+# pprint(info)

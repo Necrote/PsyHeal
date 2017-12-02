@@ -7,7 +7,8 @@ import datetime
 import sys,traceback
 import time
 from bson.json_util import dumps
-
+import Constants
+import pandas as pd
 
 def selectAttributes(factor , attributes):
 	temp_arr = []
@@ -30,19 +31,7 @@ def UploadFile(patientName , JsonFile ):
 	try:
 	
 		with open(JsonFile) as json_file:
-			json_data = json.load(json_file)
-
-		Openness = ['Adventurousness','Artistic interests','Emotionality','Imagination','Intellect','Authority-challenging']
-		Conscientiousness = ['Achievement striving','Cautiousness','Dutifulness','Orderliness','Self-discipline','Self-efficacy']
-		Extraversion = ['Activity level','Assertiveness','Cheerfulness','Excitement-seeking','Outgoing','Gregariousness']
-		Agreeableness = ['Altruism','Cooperation','Modesty','Uncompromising','Sympathy','Trust']
-		EmotionalRange = ['Fiery','Prone to worry','Melancholy','Immoderation','Self-consciousness','Susceptible to stress']
-
-		OpAttri = [ Openness[0] , Openness[2] , Openness[3]]
-		ConAttri = [ Conscientiousness[0] , Conscientiousness[1] , Conscientiousness[2]]
-		ExtraAttri = [ Extraversion[0] , Extraversion[1] , Extraversion[3]]
-		AgreeAttri = [ Agreeableness[1] , Agreeableness[2] , Agreeableness[4]]
-		EmoAttri = [ EmotionalRange[2] , EmotionalRange[4] , EmotionalRange[5]] 
+			json_data = json.load(json_file)		
 
 		persondata = json_data["personality"]
 
@@ -56,19 +45,19 @@ def UploadFile(patientName , JsonFile ):
 		count = 0
 
 		#Selecting for Openness
-		persondata[0] = selectAttributes(persondata[0],OpAttri)
+		persondata[0] = selectAttributes(persondata[0],Constants.OpAttri)
 
 		#Selecting for Conscientiousness
-		persondata[1] = selectAttributes(persondata[1],ConAttri)
+		persondata[1] = selectAttributes(persondata[1],Constants.ConAttri)
 
 		#Selecting for Extraversion
-		persondata[2] = selectAttributes(persondata[2],ExtraAttri)
+		persondata[2] = selectAttributes(persondata[2],Constants.ExtraAttri)
 
 		#Selecting for Agreeableness
-		persondata[3] = selectAttributes(persondata[3],AgreeAttri)
+		persondata[3] = selectAttributes(persondata[3],Constants.AgreeAttri)
 
 		#Selecting for Emotional Range
-		persondata[4] = selectAttributes(persondata[4],EmoAttri)
+		persondata[4] = selectAttributes(persondata[4],Constants.EmoAttri)
 
 
 		if (ifExsists(PDetails,patientName) ):
@@ -122,6 +111,75 @@ def getIsoDate(timevalue):
 	return readable_date
 
 
+def getDataFrame(Pname , enddate , duration):
 
-file = "en_v3.json"
-result=UploadFile("NameA",file)
+	uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
+
+	client = pymongo.MongoClient(uri)
+	db = client.get_default_database()
+	PDetails = db['patient_details']
+
+	startdate = enddate - datetime.timedelta(duration)
+
+	cursor = PDetails.find_one({'_id':Pname})
+
+	if cursor is None:
+		return None
+
+	result = []
+
+	for key,value in cursor.items():
+ 		if 'count' in key:
+ 			count = value
+ 		if 'Record' in key:
+ 			result = value
+
+	colList = []
+	finalList = []
+	listsize = 0
+
+	for i in range(count):
+		if not(startdate <= result[i]["Date"] <= enddate):
+			continue
+		templist = []
+		if "Date" not in colList:
+			colList.append("Date")
+
+		templist.insert(colList.index("Date"),result[i]["Date"])
+		l=len(result[i]['Analysis'])
+		for j in range(l):
+			parentFactor = result[i]['Analysis'][j]
+			children = parentFactor['children']
+			for k in range(len(children)):
+				if children[k]['name'] not in colList:
+					colList.append(children[k]['name'])
+				templist.insert(colList.index(children[k]['name']),children[k]['percentile']*100)		
+
+		finalList.append(templist)		
+
+	if len(finalList)==0:
+		return "No Results Found"
+
+	df = pd.DataFrame(finalList)
+	df.columns = colList
+	df = df.sort_values(by = "Date")
+
+	avglist = df[colList[1]].tolist()
+	mean = sum(avglist)/len(avglist)
+	lastrow = []
+	lastrow.insert(colList.index('Date'),None)
+
+	for head in df.columns:
+		if head != 'Date':
+			avglist = df[head].tolist()
+			mean = sum(avglist)/len(avglist)
+			lastrow.insert(colList.index(head),mean)
+
+	df.loc[len(df)] = lastrow
+
+	return df
+
+# file = "en_v3.json"
+# result=UploadFile("NameC",file)
+# dataFrame = getDataFrame("NameC",datetime.datetime.today(),100)
+# print(dataFrame)

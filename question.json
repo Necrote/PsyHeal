@@ -1,215 +1,215 @@
 {"questions":[
 {"description": "I see myself as anxious, easily upset.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I see myself as reserved, quiet.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I see myself as quarrelsome.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I fear losing control and going crazy.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I feel numbness or tingling sensations.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I feel afraid.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I start sweating and trembling.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I am unable to relax.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I feel someone's choking me.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I have difficulty sleeping.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I feel that I am going to faint.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I am unable to stop thinking about my problems.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I am bored most of the time.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I feel worthless and useless.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I think I am a failure.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "It is hard for me to concentrate on reading.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "The pleasure and joy has gone out of my life.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I am recovering from my illness.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "It takes great effort for me to simple things.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I feel that I am a guilty person who deserves to be punished.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I spend time thinking about how I might kill myself.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I feel trapped or caught.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "There have been times when I have felt both high (elated) and low (depressed) at the same time.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "At times I am greatly interested in being with people and at other times I just want to be left alone with my thoughts.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "If something goes wrong or turns out badly, it's not my fault.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 {"description": "I hear or see things that others do not hear or see.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 
 {"description": "I believe that others control what I think and feel.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 
 {"description": "I have magical powers that nobody else has or can explain.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 
 {"description": "I can't trust what I'm thinking because I don't know if it's real or not.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }
 
 {"description": "I talk to another person or other people inside my head that nobody else can hear.",
-   "options":["1":"Strongly Disagree", "2": "Disagree",
-               "3": "Neither Agree nor disagree", "4": "Agree",
-               "5": "Strongly agree"
+   "options":[{"1":"Strongly Disagree"}, {"2": "Disagree"},
+               {"3": "Neither Agree nor disagree"}, {"4": "Agree"},
+               {"5": "Strongly agree"}
    ]
 	
 }

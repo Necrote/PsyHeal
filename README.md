@@ -4,7 +4,7 @@
 PsyHeal is a Flask-based webapp that automates psychological assessments and monitoring by using various [personality insights API](https://www.ibm.com/watson/services/personality-insights/) provided by IBM Watson under cognitive services . Long-term reports and insights are also maintained for monitoring purposes.
 
 ## Pre-requisites
-* [Python 2.7](https://www.python.org/download/releases/2.7/)
+* [Python 3.6](https://www.python.org/downloads/release/python-363/)
 * [Flask 0.12.2](https://pypi.python.org/pypi/Flask/0.12.2)
 * pysqlite 2.6.0
 * sqlite 3.8.2

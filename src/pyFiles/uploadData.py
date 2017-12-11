@@ -179,9 +179,7 @@ def getDataFrame(Pname , enddate , duration):
 
 	return df
 
-
-file = "/home/toshiba/github/Psyheal/output/json_output.json"
-UploadFile("PatientE",file)
- # result=UploadFile("NameC",file)
- # dataFrame = getDataFrame("NameC",datetime.datetime.today(),100)
- # print(dataFrame)
+# file = "en_v3.json"
+# result=UploadFile("NameC",file)
+# dataFrame = getDataFrame("NameC",datetime.datetime.today(),100)
+# print(dataFrame)

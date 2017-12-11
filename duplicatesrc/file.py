@@ -7,10 +7,11 @@ def func():
     import json
     import sys
     
-    from watson_developer_cloud import PersonalityInsightsV2
-    personality_insights = PersonalityInsightsV2(
-    username='e6b4ab4c-c4b3-4130-a89e-3aa18f1a791a',
-    password='8SLrsgF6MaSy',url='https://gateway.watsonplatform.net/personality-insights/api')
+    from watson_developer_cloud import PersonalityInsightsV3
+
+    personality_insights = PersonalityInsightsV3(
+    username='d0ae6a0f-4da7-45bc-b305-ae38f9932dd6',
+    password='oHBhyGabr12x',url='https://gateway.watsonplatform.net/personality-insights/api/v3/profile?version=2017-10-13')
    
 
     filepath=join('../output','json_output.json')
@@ -26,7 +27,8 @@ def func():
     #webbrowser.get('firefox').open_new_tab(chartpath)
     #summary=soup.find('section', { "id" : "experience" })
     #print(summary.getText().encode('utf-8'))
-    f.close();
-    
+    f.close()
+    print("here")    
     #get tweets for username passed at command line
    
+func()

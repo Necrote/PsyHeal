@@ -18,7 +18,7 @@ def func():
     #chartpath=join('./sunburst-chart-master/examples','example_v2.html')
     #print(filepath)
     f=open(filepath,'w+')
-    with open(join(dirname(__file__), '../textinput/kalam.txt')) as \
+    with open(join(dirname(__file__), '../textinput/1.txt')) as \
     personality_text:
      json.dump(personality_insights.profile(text=personality_text.read()), f)
     #driver = webdriver.Chrome() #I actually used the chromedriver and did not test firefox, but it should work.

@@ -1,12 +1,17 @@
 from flask import Flask, session, flash, redirect, render_template, jsonify, request, url_for
-import sqlite3 as sql
+from os.path import join, dirname,abspath
 import json
+import sqlite3 as sql
+import sys
+sys.path.insert(0, 'src/modules/')
+from WatsonAPI import callWatsonAPI
 
 app = Flask(__name__)
 app.secret_key = '\x03\x04\xec\x18"\x06\xfd]\x0cK\xf1\x97\xe0y\x1ba\xfa\xb8-\xdb\xdb\xa8\x96%'
 typeList = ["admin","doctor","patient"]
 dbPath = "src/database/"
 textInputPath = "input/textinput/"
+jsonOutputPath = "output/jsonoutput/"
 
 def getSessionData():
     if 'username' in session:
@@ -182,10 +187,16 @@ def addentry():
                 ctrs[username] = 0
             ctrs[username] += 1
             ctr = ctrs[username]
-            with open(textInputPath+username+"_output"+str(ctr)+".txt", "w+") as entryFile:
+            inputFilePath = textInputPath+username+"_entry"+str(ctr)+".txt"
+            outputFilePath = jsonOutputPath+username+"_report"+str(ctr)+".json"
+            with open(inputFilePath, "w+") as entryFile:
                 entryFile.write(entry)
             with open(textInputPath+'txtEntryCounter.json', 'w+') as fp:
                 json.dump(ctrs, fp)
+            try:
+                callWatsonAPI(inputFilePath, outputFilePath)
+            except:
+                error = "failed to call Watson API."
             msg = "entry added."
         except:
             error = "internal write error."

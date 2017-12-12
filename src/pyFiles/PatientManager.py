@@ -37,7 +37,7 @@ def UploadFile(patientName , JsonFile ):
 
 		uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
 
-		date = datetime.datetime(2017,10,7)
+		date = datetime.datetime.now()
 
 		client = pymongo.MongoClient(uri)
 		db = client.get_default_database()
@@ -111,7 +111,7 @@ def getIsoDate(timevalue):
 	return readable_date
 
 
-def getDataFrame(Pname , enddate , duration):
+def getDataFrame(Pname , recordNumber , number):
 
 	uri = "mongodb://csubhedar:"+urllib.parse.quote_plus("showoff@123")+"@ds241055.mlab.com:41055/patient_details"
 
@@ -119,7 +119,6 @@ def getDataFrame(Pname , enddate , duration):
 	db = client.get_default_database()
 	PDetails = db['patient_details']
 
-	startdate = enddate - datetime.timedelta(duration)
 
 	cursor = PDetails.find_one({'_id':Pname})
 
@@ -134,28 +133,35 @@ def getDataFrame(Pname , enddate , duration):
  		if 'Record' in key:
  			result = value
 
+	if recordNumber > count or recordNumber-number<0:
+ 		return
+
+	RidList = []
+	endpoint = recordNumber - number
 	colList = []
 	finalList = []
 	listsize = 0
 
+	for i in range(recordNumber,endpoint,-1):
+		RidList.append((Pname+str(i)))
+
 	for i in range(count):
-		if not(startdate <= result[i]["Date"] <= enddate):
-			continue
-		templist = []
-		if "Date" not in colList:
-			colList.append("Date")
+		if result[i]['Rid'] in RidList:
+			templist = []
+			if "Date" not in colList:
+				colList.append("Date")
 
-		templist.insert(colList.index("Date"),result[i]["Date"])
-		l=len(result[i]['Analysis'])
-		for j in range(l):
-			parentFactor = result[i]['Analysis'][j]
-			children = parentFactor['children']
-			for k in range(len(children)):
-				if children[k]['name'] not in colList:
-					colList.append(children[k]['name'])
-				templist.insert(colList.index(children[k]['name']),children[k]['percentile']*100)		
+			templist.insert(colList.index("Date"),result[i]["Date"])
+			l=len(result[i]['Analysis'])
+			for j in range(l):
+				parentFactor = result[i]['Analysis'][j]
+				children = parentFactor['children']
+				for k in range(len(children)):
+					if children[k]['name'] not in colList:
+						colList.append(children[k]['name'])
+					templist.insert(colList.index(children[k]['name']),children[k]['percentile']*100)		
 
-		finalList.append(templist)		
+			finalList.append(templist)		
 
 	if len(finalList)==0:
 		return "No Results Found"
@@ -180,8 +186,8 @@ def getDataFrame(Pname , enddate , duration):
 	return df
 
 
-file = "/home/toshiba/github/Psyheal/output/json_output.json"
-UploadFile("PatientE",file)
+# file = "/home/toshiba/github/Psyheal/output/json_output.json"
+# UploadFile("PatientE",file)
  # result=UploadFile("NameC",file)
- # dataFrame = getDataFrame("NameC",datetime.datetime.today(),100)
- # print(dataFrame)
+# dataFrame = getDataFrame("p1",11,7)
+# print(dataFrame)

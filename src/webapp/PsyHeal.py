@@ -5,10 +5,15 @@ import sys
 sys.path.insert(0, 'src/modules/')
 from WatsonAPI import *
 from PatientManager import *
+from Grapher import *
+from JsonManager import *
+from NotificationManager import *
 
 app = Flask(__name__)
 app.secret_key = '\x03\x04\xec\x18"\x06\xfd]\x0cK\xf1\x97\xe0y\x1ba\xfa\xb8-\xdb\xdb\xa8\x96%'
 typeList = ["admin","doctor","patient"]
+optionList = ['All', 'Checked', 'Unchecked']
+notifTable = None
 dbPath = "src/database/"
 textInputPath = "input/textinput/"
 jsonOutputPath = "output/jsonoutput/"
@@ -201,10 +206,53 @@ def addentry():
                 UploadFile(username, outputFilePath)
             except:
                 error = "failed to upload report to MongoDB."
+            try:
+                conditionalNotification(username)
+            except:
+                error = "failed to check for critical conditions."
             msg = "entry added."
         except:
             error = "internal write error."
     return render_template('addentry.html', username = username, accType = accType, error = error, msg = msg)
+
+@app.route('/notification')
+def notification():
+    username, password, accType = getSessionData()
+    error = None
+    msg = None
+    filterOption = request.args.get("filterOption")
+    if filterOption == None:
+        filterOption = 'All'
+    if accType != 'doctor':
+        error = 'You are not authorized for viewing notification reports.'
+    global notifTable
+    notifTable = getNotifications(username, filterOption)
+    if len(notifTable) == 0:
+        msg = "No crticial report notifications."
+    return render_template('notification.html', username = username, accType = accType, error = error, msg = msg, notifTable = notifTable, sz = len(notifTable), optionList = optionList, filterOption = filterOption)
+
+@app.route('/viewreport', methods = ['GET', 'POST'])
+def viewreport():
+    username, password, accType = getSessionData()
+    error = None
+    msg = None
+    if accType != 'doctor':
+        error = 'You are not authorized for viewing patient reports.'
+    elif request.method == 'POST':
+        recordIdx = int(request.form['report'])
+        global notifTable
+        patientID = notifTable[recordIdx][0]
+        count = notifTable[recordIdx][3]
+        criticalList = notifTable[recordIdx][4]
+        notifTable = None
+
+        try:
+            setViewed(username, patientID, count)
+            pDF = getDataFrame(patientID, count, 5)
+            plot = generateGraphReport(pDF, criticalList, patientID)
+        except:
+            error = "failed to generate graphical report."
+    return render_template('viewreport.html', username = username, accType = accType, error = error, msg = msg, plot = plot, criticalList = criticalList)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

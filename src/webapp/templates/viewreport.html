@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Help</title>
+  <title>Critical Report</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
 </head>
 <body>
@@ -17,7 +17,7 @@
         {% else %}
         <li><a href="{{ url_for('login') }}"><div class="button one"><span>Login</span><div></a></li>
         {% endif %}
-        <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
+        <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
         {% if accType == 'admin' %}
         <li><a href="{{ url_for('newuser') }}"><div class="button one"><span>Add new user</span><div></a></li>
         <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
@@ -34,9 +34,11 @@
         {% endif %}
       </ul>
     </nav>
-
     <article>
-      <strong>***TO-DO***</strong>
+    Critical Factors: {{criticalList}}
+      <div id="plot">
+       <embed type="image/svg+xml" src= {{ plot|safe }} width=75% height=75% />
+      </div>
     </article>
   </div>
   <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>

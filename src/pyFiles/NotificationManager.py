@@ -205,3 +205,5 @@ def setViewed(DoctorId,Pid,count):
 
 # conditionalNotification("p1")
 # setViewed("d1","p1",11)
+result=getNotifications("d1",None)
+pprint(result)

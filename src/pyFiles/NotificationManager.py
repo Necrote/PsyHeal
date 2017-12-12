@@ -86,7 +86,7 @@ def getNotifications(doctorId,value):
 			array = doc['Notifications']
 			finalarr = []
 			for i in range(len(array)):
-				if(array[i]["Status"] == False):
+				if(array[i]["Status"] == value):
 					finalarr.append(array[i])
 		doc['Notifications'] = finalarr
 		result = dumps(doc)
@@ -190,5 +190,18 @@ def setViewed(DoctorId,Pid,count):
 	
 	NotiDb = db['notifications']		
 
+	cursor = NotiDb.find_one({"_id" : DoctorId})
 
-conditionalNotification("p1")
+	for key,value in cursor.items():
+ 		if 'Notifications' in key:
+ 			notiarray = value
+ 		
+	for i in range(len(notiarray)):
+		if notiarray[i]['PatientId'] == Pid and notiarray[i]['Count'] == count:
+			if notiarray[i]['Status'] == False:
+				path = 'Notifications.'+str(i)+'.Status'
+				NotiDb.update({'_id': DoctorId},{'$set':{path : True}})
+
+
+# conditionalNotification("p1")
+# setViewed("d1","p1",11)

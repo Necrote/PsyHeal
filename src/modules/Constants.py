@@ -4,9 +4,9 @@ Extraversion = ['Activity level','Assertiveness','Cheerfulness','Excitement-seek
 Agreeableness = ['Altruism','Cooperation','Modesty','Uncompromising','Sympathy','Trust']
 EmotionalRange = ['Fiery','Prone to worry','Melancholy','Immoderation','Self-consciousness','Susceptible to stress']
 
-OpAttri = [ Openness[0] , Openness[2] , Openness[3]]
-ConAttri = [ Conscientiousness[0] , Conscientiousness[1] , Conscientiousness[2]]
-ExtraAttri = [ Extraversion[0] , Extraversion[1] , Extraversion[2]]
+OpAttri = Openness#[ Openness[0] , Openness[2] , Openness[3]]
+ConAttri = Conscientiousness#[ Conscientiousness[0] , Conscientiousness[1] , Conscientiousness[2]]
+ExtraAttri = Extraversion#[ Extraversion[0] , Extraversion[1] , Extraversion[3]]
 AgreeAttri = Agreeableness#[ Agreeableness[1] , Agreeableness[2] , Agreeableness[4]]
 EmoAttri = EmotionalRange#[ EmotionalRange[2] , EmotionalRange[4] , EmotionalRange[5]] 
 

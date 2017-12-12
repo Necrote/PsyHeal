@@ -1,10 +1,10 @@
 from flask import Flask, session, flash, redirect, render_template, jsonify, request, url_for
-from os.path import join, dirname,abspath
-import json
 import sqlite3 as sql
+import json
 import sys
 sys.path.insert(0, 'src/modules/')
-from WatsonAPI import callWatsonAPI
+from WatsonAPI import *
+from PatientManager import *
 
 app = Flask(__name__)
 app.secret_key = '\x03\x04\xec\x18"\x06\xfd]\x0cK\xf1\x97\xe0y\x1ba\xfa\xb8-\xdb\xdb\xa8\x96%'
@@ -197,6 +197,10 @@ def addentry():
                 callWatsonAPI(inputFilePath, outputFilePath)
             except:
                 error = "failed to call Watson API."
+            try:
+                UploadFile(username, outputFilePath)
+            except:
+                error = "failed to upload report to MongoDB."
             msg = "entry added."
         except:
             error = "internal write error."

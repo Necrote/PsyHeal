@@ -13,3 +13,20 @@ EmoAttri = EmotionalRange#[ EmotionalRange[2] , EmotionalRange[4] , EmotionalRan
 personality_traits = ["Openness","Conscientiousness","Extraversion","Agreeableness","Emotional range"]
 
 combinedTraits = [OpAttri,ConAttri,ExtraAttri,AgreeAttri,EmoAttri]
+
+recordLimit = 10
+
+CriticalCount = 3
+
+SelectedAttributes = ['Authority-challenging','Cautiousness','Sympathy','Trust','Prone to worry','Melancholy','Immoderation','Self-consciousness','Susceptible to stress','Cheerfulness']
+
+Constraints = { 'Authority-challenging' : [92.00,100.00],
+				'Cautiousness' : [93.00,99.00],
+				'Sympathy' : [0.00,0.15],
+				'Trust' : [0.00,0.15],
+				'Prone to worry' : [85.00,100.00],
+				'Melancholy' : [88.00,100.00],
+				'Immoderation' : [80.00,100.00],
+				'Self-consciousness' : [75.00,100.00],
+				'Susceptible to stress' : [80.00,100.00],
+				'Cheerfulness' : [0.00,20.00]}

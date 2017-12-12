@@ -24,5 +24,5 @@ def getQuestions(file):
 
 	return result
 
-# val = getQuestions("/home/toshiba/github/Psyheal/question.json")
-# pprint(val)
+val = getQuestions("/home/toshiba/github/Psyheal/question.json")
+pprint(val)

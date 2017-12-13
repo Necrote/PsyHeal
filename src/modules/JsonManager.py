@@ -20,4 +20,4 @@ def getQuestions(file):
 				"Options" : options
 	}
 
-	return result
+	return questions, options

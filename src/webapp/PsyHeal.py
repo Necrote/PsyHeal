@@ -17,6 +17,7 @@ notifTable = None
 dbPath = "src/database/"
 textInputPath = "input/textinput/"
 jsonOutputPath = "output/jsonoutput/"
+mcqPathFile = "src/modules/question.json"
 
 def getSessionData():
     if 'username' in session:
@@ -164,6 +165,65 @@ def showaccdata():
             conn.close()
    
     return render_template("showaccdata.html", username = username, accType = accType, query = query, error = error)
+
+@app.route('/newmcq')
+def newmcq():
+    username, password, accType = getSessionData()
+    error = None
+    msg = None
+    if accType != 'patient':
+        error = 'You are not authorized for questionnaire.'
+    qList, optionList = getQuestions(mcqPathFile)
+    return render_template('newmcq.html', username = username, accType = accType, error = error, msg = msg, qList = qList, optionList = optionList, qsz = len(qList), osz = len(optionList))
+
+@app.route('/addmcqentry', methods = ['GET', 'POST'])
+def addmcqentry():
+    username, password, accType = getSessionData()
+    error = None
+    msg = None
+
+    if accType != 'patient':
+        error = 'You are not authorized for adding text entries.'
+    elif request.method == 'POST':
+        try:
+            qList, optionList = getQuestions(mcqPathFile)
+            responseList = []
+            for i in range(len(qList)):
+               responseList.append(request.form['q'+str(i)])
+            entry = ""
+            for i in range(len(responseList)):
+                entry += "I "
+                entry += optionList[ int(responseList[i]) ]
+                entry += " that "+qList[i]+" "
+            ctr = -19
+            with open(textInputPath+'txtEntryCounter.json') as json_data:
+                ctrs = json.load(json_data)
+            if username not in ctrs.keys():
+                ctrs[username] = 0
+            ctrs[username] += 1
+            ctr = ctrs[username]
+            inputFilePath = textInputPath+username+"_entry"+str(ctr)+".txt"
+            outputFilePath = jsonOutputPath+username+"_report"+str(ctr)+".json"
+            with open(inputFilePath, "w+") as entryFile:
+                entryFile.write(entry)
+            with open(textInputPath+'txtEntryCounter.json', 'w+') as fp:
+                json.dump(ctrs, fp)
+            try:
+                callWatsonAPI(inputFilePath, outputFilePath)
+            except:
+                error = "failed to call Watson API."
+            try:
+                UploadFile(username, outputFilePath)
+            except:
+                error = "failed to upload report to MongoDB."
+            try:
+                conditionalNotification(username)
+            except:
+                error = "failed to check for critical conditions."
+            msg = "entry added."
+        except:
+            error = "internal write error."
+    return render_template('newmcq.html', username = username, accType = accType, error = error, msg = msg, qList = qList, optionList = optionList, qsz = len(qList), osz = len(optionList))
 
 @app.route('/newentry')
 def newentry():

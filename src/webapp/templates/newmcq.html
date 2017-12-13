@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Add New Entry</title>
+  <title>New MCQ Entry</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
 </head>
 <body>
@@ -24,7 +24,7 @@
         <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
         {% endif %}
         {% if accType == 'patient' %}
-        <li><a href="{{ url_for('newmcq') }}"><div class="button one"><span>New MCQ Entry</span><div></a></li>
+        <li><a href="{{ url_for('newentry') }}"><div class="button one"><span>Add new entry</span><div></a></li>
         {% endif %}
         {% if username %}
         <li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>
@@ -33,22 +33,7 @@
     </nav>
 
     <article>
-      <form action="{{ url_for('addentry') }}" method="POST">
-        <table>
-          <tr>
-            <th>Entry Description</th>
-            <th>
-            <textarea rows="10" cols="80" name="entry" placeholder="Describe your entry here..."></textarea>
-            </th>
-          </tr>
-          <tr>
-            <th align="center" colspan="2">
-              <input class="button second" type="submit" name="submit" value="Add Entry">
-            </th>
-          </tr>
-        </table>
-      </form>
-      {% if error %}
+    {% if error %}
       <p>
         <div class="alert"><strong>Error! </strong>{{ error }}</div>
       </p>
@@ -58,6 +43,17 @@
         <div class="alert success"><strong>Success! </strong>{{ msg }}</div>
       </p>
       {% endif %}
+      <form action="{{ url_for('addmcqentry') }}" method="POST">
+        <center><h2>MCQ Entry</h2></center>
+        {% for qno in range(qsz) %}
+          </br>{{qList[qno]}}</br>
+          {% for op in range(osz) %}
+            <input type="radio" name="q{{qno}}" value="{{op}}" checked> {{optionList[op]}} &nbsp;
+          {% endfor %}
+          </br>
+        {% endfor %}
+        <input class="button second" type="submit" name="submit" value="Add MCQ Entry">
+      </form>
     </article>
   </div>
   <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>

@@ -27,6 +27,7 @@
         {% endif %}
 				{% if accType == 'patient' %}
         <li><a href="{{ url_for('newentry') }}"><div class="button one"><span>Add new entry</span><div></a></li>
+        <li><a href="{{ url_for('newmcq') }}"><div class="button one"><span>New MCQ Entry</span><div></a></li>
         {% endif %}
 				{% if username %}
 				<li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>

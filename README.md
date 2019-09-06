@@ -15,9 +15,6 @@ PsyHeal is a Flask-based webapp that automates psychological assessments and mon
 * Execute run.sh
 * Access WebServer URL for further usage instructions (default: http://localhost:5000/)
 
-## Screenshots
-* TO-DO
-
 ## Team PySpy
 * [Vivek Patel](https://github.com/Necrote)
 * Piyush Mishra

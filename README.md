@@ -22,3 +22,10 @@ PsyHeal is a Flask-based webapp that automates psychological assessments and mon
 
 ## License
 #### MIT
+
+## Screenshots
+<img src="https://user-images.githubusercontent.com/15742618/64398085-8f707e80-d031-11e9-93ed-baa756967c8e.png" width="70%" align="left">
+
+<img src="https://user-images.githubusercontent.com/15742618/64398086-8f707e80-d031-11e9-96cc-580b7fc15d19.png" width="70%" align="right">
+
+<img src="https://user-images.githubusercontent.com/15742618/64398087-90091500-d031-11e9-9e18-8b8adb7111d1.jpg" width="70%" align="left">

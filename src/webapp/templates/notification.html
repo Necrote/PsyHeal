@@ -20,8 +20,12 @@
         <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
         <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
         {% if accType == 'admin' %}
+        <li><a href="{{ url_for('editconstants') }}"><div class="button one"><span>Edit thresholds</span><div></a></li>
         <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
         <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
+        {% endif %}
+        {% if accType == 'doctor' %}
+        <li><a href="{{ url_for('approvemcq') }}"><div class="button one"><span>Approve MCQs</span><div></a></li>
         {% endif %}
         {% if username %}
         <li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>

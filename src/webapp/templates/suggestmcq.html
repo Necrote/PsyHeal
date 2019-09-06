@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Suggest MCQ</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
+</head>
+<body>
+  <div id="content">
+    <header>
+      <img src="{{url_for('static', filename='PsyHeal.png')}}" alt="Banner"/>
+    </header>
+
+    <nav>
+      <ul>
+        {% if username %}
+        <li class="button one">Hello! <strong>{{ username }}</strong></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}"><div class="button one"><span>Login</span><div></a></li>
+        {% endif %}
+        <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
+        <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
+        {% if accType == 'admin' %}
+        <li><a href="{{ url_for('editconstants') }}"><div class="button one"><span>Edit thresholds</span><div></a></li>
+        <li><a href="{{ url_for('newuser') }}"><div class="button one"><span>Add new user</span><div></a></li>
+        <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
+        <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
+        {% endif %}
+        {% if accType == 'patient' %}
+        <li><a href="{{ url_for('newentry') }}"><div class="button one"><span>Add new entry</span><div></a></li>
+        <li><a href="{{ url_for('newuploadpic') }}"><div class="button one"><span>Upload Photo</span><div></a></li>
+        {% endif %}
+        {% if accType == 'doctor' %}
+        <li><a href="{{ url_for('notification') }}"><div class="button one"><span>Notifications</span><div></a></li>
+        <li><a href="{{ url_for('approvemcq') }}"><div class="button one"><span>Approve MCQs</span><div></a></li>
+        {% endif %}
+        {% if username %}
+        <li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <article>
+      <form action="{{ url_for('suggestmcq') }}" method="POST">
+        <table width ="30%">
+          <tr>
+            <th>MCQ format:</th>
+            <th>Suggest question that can be answered on a 5 pointer-scale(i.e. from Strongly disagree to Strongly agree)</th>
+          </tr>
+          <tr>
+            <th>MCQ description: </th>
+            <th>
+              <textarea rows="5" cols="40" name="mcq" id="mcq" placeholder="Describe your MCQ here..."></textarea>
+            </th>
+          </tr>
+          <tr>
+            <th align="center" colspan="2">
+              <input class="button second" type="submit" name="submit" value="Suggest">
+            </th>
+          </tr>
+        </table>
+      </form>
+      {% if error %}
+      <p>
+        <div class="alert"><strong>Error! </strong>{{ error }}</div>
+      </p>
+      {% endif %}
+      {% if msg %}
+      <p>
+        <div class="alert success"><strong>Success! </strong>{{ msg }}</div>
+      </p>
+      {% endif %}
+    </article>
+  </div>
+  <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>
+</body>
+</html>

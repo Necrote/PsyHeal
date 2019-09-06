@@ -218,3 +218,11 @@ def setViewed(DoctorId,Pid,count):
 
 # conditionalNotification("p1")
 # setViewed("d1","p1",11)
+def formMessage(username, accType, idx, info=""):
+	msg = ""
+	if idx is 1:
+		msg += "Hello "+username+"!\nThe admin has registered you successfully in PsyHeal system as "+accType
+	elif idx is 2 and accType is "doctor":
+		msg += "Patient "+info+" may be in a critical state!\nPlease check corresponding patient report for further analysis"
+	return msg
+

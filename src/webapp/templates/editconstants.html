@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Threshold Constants</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
+  <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+</head>
+<body>
+  <div id="content">
+    <header>
+      <img src="{{url_for('static', filename='PsyHeal.png')}}" alt="Banner"/>
+    </header>
+
+    <nav>
+      <ul>
+        {% if username %}
+        <li class="button one">Hello! <strong>{{ username }}</strong></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}"><div class="button one"><span>Login</span><div></a></li>
+        {% endif %}
+        <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
+        <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
+        {% if accType == 'admin' %}
+        <li><a href="{{ url_for('newuser') }}"><div class="button one"><span>Add new user</span><div></a></li>
+        <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
+        <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
+        {% endif %}
+        {% if accType == 'patient' %}
+        <li><a href="{{ url_for('newentry') }}"><div class="button one"><span>Add new entry</span><div></a></li>
+        <li><a href="{{ url_for('newuploadpic') }}"><div class="button one"><span>Upload Photo</span><div></a></li>
+        <li><a href="{{ url_for('suggestmcq') }}"><div class="button one"><span>Suggest a MCQ</span><div></a></li>
+        {% endif %}
+        {% if username %}
+        <li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <article>
+      <form action="{{ url_for('editconstants') }}" method="POST">
+        <table width ="30%">
+          <tr>
+          <th>Record Limit:</th>
+          <th>Sets limit of records that are analyzed for critical counts of assessments which are shown in each critical report</th>
+          </tr>
+          <tr>
+          <th>Critical Count:</th>
+          <th>Sets threshold for number of assessments that should fall in critical range before notification is triggered</th>
+          </tr>
+          <tr>
+          <th>Parameter Name: </th>
+            <th>
+              <select class="button second" name="replaceParam" id="replaceParam">
+                {% for param in paramList %}
+                {% if param == replaceParam %}
+                <option selected value="{{ param }}">{{ param }}</option> 
+                {% else %} 
+                <option value="{{ param }}">{{ param }}</option> 
+                {% endif %}
+                {% endfor %}
+              </select>
+            </th>
+          </tr>
+          {% for param in paramList %}
+          <tr class = "{{ param }}">
+            {% if param == "recordLimit" %}
+              <th>New record limit: </th>
+              <th><input type="number" name="replaceValue1" placeholder="10" min="5" max="100"></th>
+            {% elif param == "CriticalCount" %}
+              <th>New critical count: </th>
+              <th><input type="number" name="replaceValue2" placeholder="3" min="3" max="100"></th>
+            {% else %} 
+            {% endif %}
+          </tr>
+          {% endfor %}
+          <tr>
+          <th align="center" colspan="2">
+              <input class="button second" type="submit" name="submit" value="Change">
+            </th>
+          </tr>
+        </table>
+      </form>
+      {% if error %}
+      <p>
+        <div class="alert"><strong>Error! </strong>{{ error }}</div>
+      </p>
+      {% endif %}
+      {% if msg %}
+      <p>
+        <div class="alert success"><strong>Success! </strong>{{ msg }}</div>
+      </p>
+      {% endif %}
+    </article>
+  </div>
+  <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>
+  <script src="{{ url_for('static',filename='js/editconstants.js') }}"></script>
+</body>
+</html>

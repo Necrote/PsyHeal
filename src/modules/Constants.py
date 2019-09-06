@@ -20,7 +20,8 @@ CriticalCount = 3
 
 SelectedAttributes = ['Cautiousness','Melancholy','Self-consciousness','Susceptible to stress','Prone to worry','Authority-challenging','Immoderation','Sympathy','Trust','Cheerfulness']
 
-Constraints = { 'Authority-challenging' : [92.00,100.00],
+Constraints = { 
+                'Authority-challenging' : [92.00,100.00],
                 'Cautiousness' : [93.00,99.00],
                 'Sympathy' : [0.00,0.15],
                 'Trust' : [0.00,0.15],
@@ -29,4 +30,5 @@ Constraints = { 'Authority-challenging' : [92.00,100.00],
                 'Immoderation' : [80.00,100.00],
                 'Self-consciousness' : [75.00,100.00],
                 'Susceptible to stress' : [80.00,100.00],
-                'Cheerfulness' : [0.00,20.00]}
+                'Cheerfulness' : [0.00,20.00]
+              }

@@ -104,3 +104,4 @@ ENV/
 /**/references/
 /**/references/**/
 /**/.~lock.*
+conf.env

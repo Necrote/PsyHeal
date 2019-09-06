@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>New MCQ Entry</title>
+  <title>Upload Photo</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
 </head>
 <body>
@@ -20,11 +20,14 @@
         <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
         <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
         {% if accType == 'admin' %}
+        <li><a href="{{ url_for('editconstants') }}"><div class="button one"><span>Edit thresholds</span><div></a></li>
         <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
         <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
         {% endif %}
         {% if accType == 'patient' %}
+        <li><a href="{{ url_for('newmcq') }}"><div class="button one"><span>New MCQ Entry</span><div></a></li>
         <li><a href="{{ url_for('newentry') }}"><div class="button one"><span>Add new entry</span><div></a></li>
+        <li><a href="{{ url_for('suggestmcq') }}"><div class="button one"><span>Suggest a MCQ</span><div></a></li>
         {% endif %}
         {% if username %}
         <li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>
@@ -33,7 +36,39 @@
     </nav>
 
     <article>
-      
+      <table>
+        <tr>
+            <th>Existing Image</th>
+        </tr>
+        <tr>
+            <td><img src="{{ patientImage }}" alt="{{ patientID }}" width="90" height="auto"></td>
+        </tr>
+      </table>
+      <form action="{{ url_for('adduploadpic') }}" method="POST" enctype="multipart/form-data">
+        <table>
+        <tr>
+            <th>Browse Image</th>
+            <th>
+            <input type="file" name="image">
+            </th>
+          </tr>
+          <tr>
+            <th align="center" colspan="2">
+              <input class="button second" type="submit" name="submit" value="Upload Photo">
+            </th>
+          </tr>
+        </table>
+      </form>
+      {% if error %}
+      <p>
+        <div class="alert"><strong>Error! </strong>{{ error }}</div>
+      </p>
+      {% endif %}
+      {% if msg %}
+      <p>
+        <div class="alert success"><strong>Success! </strong>{{ msg }}</div>
+      </p>
+      {% endif %}
     </article>
   </div>
   <footer id="footer">Developed by <a href="https://github.com/Necrote" style="color: #A2E86E">Vivek</a>, Piyush, Chaitanya</footer>

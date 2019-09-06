@@ -3,6 +3,7 @@
 <head>
   <title>Add New Entry</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/pagestyle.css') }}">
+  <script src="{{ url_for('static',filename='js/record.js') }}"></script>
 </head>
 <body>
   <div id="content">
@@ -20,11 +21,13 @@
         <li><a href="{{ url_for('index') }}"><div class="button one"><span>Home</span><div></a></li>
         <li><a href="{{ url_for('help') }}"><div class="button one"><span>Help</span><div></a></li>
         {% if accType == 'admin' %}
+        <li><a href="{{ url_for('editconstants') }}"><div class="button one"><span>Edit thresholds</span><div></a></li>
         <li><a href="{{ url_for('removeuser') }}"><div class="button one"><span>Delete user</span><div></a></li>
         <li><a href="{{ url_for('showaccdata') }}"><div class="button one"><span>Show all account details</span><div></a></li>
         {% endif %}
         {% if accType == 'patient' %}
         <li><a href="{{ url_for('newmcq') }}"><div class="button one"><span>New MCQ Entry</span><div></a></li>
+        <li><a href="{{ url_for('suggestmcq') }}"><div class="button one"><span>Suggest a MCQ</span><div></a></li>
         {% endif %}
         {% if username %}
         <li><a href="{{ url_for('logout') }}"><div class="button one"><span>Logout</span><div></a></li>
@@ -38,8 +41,16 @@
           <tr>
             <th>Entry Description</th>
             <th>
-            <textarea rows="10" cols="80" name="entry" placeholder="Describe your entry here..."></textarea>
+            <textarea rows="10" cols="50" name="entry" id="textentry" placeholder="Describe your entry here..."></textarea>
             </th>
+            {% for label, command in commands.items() %}
+              <th>
+                <button id="record" class="command command-{{ command }}" value="{{ command }}">
+                  <image src="{{url_for('static', filename='mic.svg')}}" width="20" height="auto"/>
+                  {{ label }}
+                </button>
+              </th>
+            {% endfor %}
           </tr>
           <tr>
             <th align="center" colspan="2">
